@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      GEONAMES_USERNAME: ${GEONAMES_USERNAME:-hsample}
+      CACHE_TTL: ${CACHE_TTL:-10m}
+    expose:
+      - "8080"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
